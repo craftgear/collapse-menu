@@ -10,7 +10,8 @@
   ],
   "keywords": [
     "polymer",
-    "collapse-menu"
+    "collapse-menu",
+    "web-components"
   ],
   "license": "MIT",
   "homepage": "https://github.com/craftgear/collapse-menu",
