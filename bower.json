@@ -1,0 +1,31 @@
+{
+  "name": "collapse-menu",
+  "version": "0.0.1",
+  "authors": [
+    "Shunsuke Watanabe <craftgear@gmail.com>"
+  ],
+  "main": "collapse-menu.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "polymer",
+    "collapse-menu"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/craftgear/collapse-menu",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.4",
+    "paper-menu-button": "Polymer/paper-menu-button#~0.5.4",
+    "paper-dropdown": "Polymer/paper-dropdown#~0.5.4",
+    "core-menu": "Polymer/core-menu#~0.5.4",
+    "core-media-query": "Polymer/core-media-query#~0.5.4"
+  }
+}

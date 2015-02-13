@@ -1,0 +1,83 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+<link rel="import" href="./bower_components/core-menu/core/menu.html">
+<link rel="import" href="./bower_components/core-media-query/core-media-query.html">
+<link rel="import" href="./bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="./bower_components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="./bower_components/paper-icon-button/paper-icon-button.html">
+
+<!--
+
+&lt;collapse-menu&gt; is a responsive menu bar.
+It moves its child elements into a `paper-menu-button` when a predetermined screen size is reached.
+
+You can simply replace existed core-menu with collapse-menu.
+
+Use the `query` attribute to configure the `collapse-menu` with a CSS breakpoint so it knows when to collapse.
+
+##### Example
+
+    <collapse-menu query="max-width: 500px">
+        <core-item><a href="#!index">TOP</a></core-item>
+        <core-item><a href="#!index">LIST</a></core-item>
+        <core-item><a href="#!index">ABOUT</a></core-item>
+    </collapse-menu>
+
+## Acknowledgement
+This element is heavily inspired by Rob Dodson's [collapse-toolbar](https://github.com/robdodson/collapse-toolbar).
+
+@element collapse-menu
+@blurb responsive menu list
+@status alpha
+@homepage http://github.com/craftgear/collapse-menu
+-->
+
+<!--
+A CSS breakpoint which will trigger the collapsed state and move all elements into the collapsed menu.
+
+@attribute query
+@type string
+-->
+
+<!--
+An Index specified which menu is selected. Works as the same core-menu's `selected` attribute.
+
+@attribute selected
+@type numerical
+-->
+
+<polymer-element name="collapse-menu" attributes="query selected" noscript>
+    <template>
+        <style>
+            ::content a {
+                display: block;
+                position: relative !important; /* this !important is needed because of a bug in Chrome40.0.2214.109 on Android */
+                text-decoration: none;
+                color: #666666;
+            }
+            ::content a:hover {
+                color: #0074D9;
+            }
+            core-menu {
+                margin: 8px 20px 8px 8px;
+            }
+        </style>
+        <!-- When smallScreen is true, hide the links... -->
+        <template if="{{smallScreen}}">
+            <paper-menu-button layout horizontal center>
+                <paper-icon-button icon="menu"></paper-icon-button>
+                <paper-dropdown class="dropdown" halign="right">
+                    <core-menu selected="{{selected}}">
+                        <content></content>
+                    </core-menu>
+                </paper-dropdown>
+            </paper-menu-button>
+        </template>
+        <!-- ...otherwise display them in the toolbar -->
+        <core-menu selected="{{selected}}" layout horizontal hidden?="{{smallScreen}}">
+            <content></content>
+        </core-menu>
+
+        <core-media-query query="{{query}}" queryMatches="{{smallScreen}}">
+        </core-media-query>
+    </template>
+</polymer-element>
