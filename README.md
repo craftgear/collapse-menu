@@ -7,7 +7,14 @@ You can simply replace existed core-menu with collapse-menu.
 
 Use the `query` attribute to configure the `collapse-menu` with a CSS breakpoint so it knows when to collapse.
 
+##### Install
+```
+bower install --save craftgear/collapse-menu
+```
+
 ##### Example
+
+    <link rel="import" href="./bower_components/collapse-menu/collapse-menu.html">
 
     <collapse-menu query="max-width: 500px">
         <core-item><a href="#!index">TOP</a></core-item>
