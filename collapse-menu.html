@@ -45,7 +45,7 @@ An Index specified which menu is selected. Works as the same core-menu's `select
 @type numerical
 -->
 
-<polymer-element name="collapse-menu" attributes="query selected" noscript>
+<polymer-element name="collapse-menu" attributes="query selected duration" noscript>
     <template>
         <style>
             ::content a {
@@ -57,15 +57,17 @@ An Index specified which menu is selected. Works as the same core-menu's `select
             ::content a:hover {
                 color: #0074D9;
             }
-            core-menu {
-                margin: 8px 20px 8px 8px;
+            /** AndroidのChromeではデフォルトのpaddingで丁度いいが、デスクトップのChromeでは広すぎる
+            ::content ::shadow div.button-content{
+                padding: 0.2em 1em;
             }
+            **/
         </style>
         <!-- When smallScreen is true, hide the links... -->
         <template if="{{smallScreen}}">
             <paper-menu-button layout horizontal center>
                 <paper-icon-button icon="menu"></paper-icon-button>
-                <paper-dropdown class="dropdown" halign="right">
+                <paper-dropdown class="dropdown" halign="right" duration="{{duration}}">
                     <core-menu selected="{{selected}}">
                         <content></content>
                     </core-menu>
