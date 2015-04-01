@@ -48,22 +48,26 @@ An Index specified which menu is selected. Works as the same core-menu's `select
 <polymer-element name="collapse-menu" attributes="query selected duration" noscript>
     <template>
         <style>
+            :host * {
+                font-family: inherit;
+            }
             ::content a {
                 display: block;
                 position: relative !important; /* this !important is needed because of a bug in Chrome40.0.2214.109 on Android */
                 text-decoration: none;
-                color: #666666;
+                color: inherit;
             }
-            ::content a:hover {
-                color: #0074D9;
+
+            #wide core-menu {
+                margin: 0;
             }
-            /** AndroidのChromeではデフォルトのpaddingで丁度いいが、デスクトップのChromeでは広すぎる
+
+            /* for padding oversized */
             ::content ::shadow div.button-content{
-                padding: 0.2em 1em;
+                padding: 0.5em 1em;
             }
-            **/
         </style>
-        <!-- When smallScreen is true, hide the links... -->
+        <!-- When smallScreen is true, make links collapsed ... -->
         <template if="{{smallScreen}}">
             <paper-menu-button layout horizontal center>
                 <paper-icon-button icon="menu"></paper-icon-button>
@@ -75,9 +79,11 @@ An Index specified which menu is selected. Works as the same core-menu's `select
             </paper-menu-button>
         </template>
         <!-- ...otherwise display them in the toolbar -->
-        <core-menu selected="{{selected}}" layout horizontal hidden?="{{smallScreen}}">
-            <content></content>
-        </core-menu>
+        <div id="wide">
+            <core-menu selected="{{selected}}" layout horizontal hidden?="{{smallScreen}}">
+                <content></content>
+            </core-menu>
+        </div>
 
         <core-media-query query="{{query}}" queryMatches="{{smallScreen}}">
         </core-media-query>
